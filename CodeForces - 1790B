@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+using namespace std;
+
+int main() {
+    int cases;
+    cin >> cases;
+
+    while (cases--) {
+        int n, s, r;
+        cin >> n >> s >> r;
+        int max_val = s - r;
+        vector<int> v;
+        v.push_back(max_val);
+        int x = r / (n - 1);
+        int mod = (s - max_val) % (n - 1);
+
+        for (int i = 0; i < n - 1; i++) {
+            if (mod > 0) {
+                v.push_back(x + 1);
+                mod--;
+            } else {
+                v.push_back(x);
+            }
+        }
+
+        // Print the entire vector using std::copy and an output stream iterator
+        copy(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
+        cout << endl;
+    }
+
+    return 0;
+}
